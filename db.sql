@@ -142,3 +142,28 @@ CREATE TABLE order_history (
     FOREIGN KEY (order_id) REFERENCES cust_order(order_id),
     FOREIGN KEY (status_id) REFERENCES order_status(status_id)
 );
+
+-- CREATING USERS AND ASSIGNING THEM ROLES AND PRIVILEGES
+-- 1. Create Roles
+CREATE ROLE IF NOT EXISTS 'developer_role';
+CREATE ROLE IF NOT EXISTS 'manager_role';
+CREATE ROLE IF NOT EXISTS 'user_role';
+
+-- Grant all privileges to the developer role
+GRANT ALL PRIVILEGES ON *.* TO 'developer_role' WITH GRANT OPTION;
+
+-- Grant specific DML privileges to the manager role
+GRANT SELECT, INSERT, UPDATE, DELETE ON *.* TO 'manager_role';
+
+-- Grant only SELECT privilege to the user role
+GRANT SELECT ON *.* TO 'user_role';
+
+-- Create Users (restricted to localhost)
+CREATE USER IF NOT EXISTS 'Martin'@'localhost' IDENTIFIED BY 'password_martin'; 
+CREATE USER IF NOT EXISTS 'Fridah'@'localhost' IDENTIFIED BY 'password_fridah'; 
+CREATE USER IF NOT EXISTS 'Anita'@'localhost' IDENTIFIED BY 'password_anita';
+
+-- Grant Roles to Users (restricted to localhost)
+GRANT 'developer_role' TO 'Martin'@'localhost';
+GRANT 'user_role' TO 'Fridah'@'localhost';
+GRANT 'manager_role' TO 'Anita'@'localhost';
