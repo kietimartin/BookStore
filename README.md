@@ -38,8 +38,4 @@ Execute the schema script:
 Support<br>
 For assistance, please contact:
 
-Database Administrator: admin@bookstore.com
-
-Technical Support: support@bookstore.com
-
-Note: This documentation assumes MySQL 8.0+. Some syntax may need adjustment for earlier versions.
+Database Administrator: mathiasfridah2@gmail.com | martinkieti6@gmail.com | kisitianita@gmail.com
