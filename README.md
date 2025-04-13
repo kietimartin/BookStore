@@ -12,7 +12,7 @@ The database follows relational design principles with proper normalization and 
 - **Orders**: `cust_order`, `order_line`, `order_history`, `order_status`, `shipping_method`
 
 ### Entity Relationship Diagram
-![ER Diagram](er_diagram.png) *(Note: Include your Draw.io generated diagram here)*
+![ER Diagram]((https://drive.google.com/file/d/1w9I_kbbW14mDqNyoLZSSOEwg10ZrJUbf/view?usp=sharing))
 
 ## Installation Instructions
 
