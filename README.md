@@ -21,102 +21,102 @@ This MySQL database system is designed for managing operations of a bookstore, i
 - Basic SQL knowledge
 
 ### Setup Steps
-1. Clone this repository or copy the SQL scripts
-2. Connect to your MySQL server:
-   cmd/bash
-   mysql -u root -p
-Create the database:
+1. Clone this repository or copy the SQL scripts<br>
+2. Connect to your MySQL server:<br>
+   cmd/bash<br>
+   mysql -u root -p<br>
+Create the database:<br>
 
-sql
-CREATE DATABASE bookstore;
-USE bookstore;
+sql<br>
+CREATE DATABASE bookstore;<br>
+USE bookstore;<br>
 Execute the schema script:
 
-sql
+sql<br>
 
-SOURCE /path/to/schema.sql;
-(Optional) Load sample data:
+SOURCE /path/to/schema.sql;<br>
+(Optional) Load sample data:<br>
 
-sql
+sql<br>
 
-SOURCE /path/to/sample_data.sql;
-User Accounts
-Username	Password	Privileges
-bookstore_admin	secure_password	Full database access
-bookstore_manager	manager_pass	Read/write all tables
-bookstore_staff	staff_pass	Limited read/write access
-bookstore_report	report_pass	Read-only for reporting
-To create users:
+SOURCE /path/to/sample_data.sql;<br>
+User Accounts<br>
+Username	Password	Privileges<br>
+bookstore_admin	secure_password	Full database access<br>
+bookstore_manager	manager_pass	Read/write all tables<br>
+bookstore_staff	staff_pass	Limited read/write access<br>
+bookstore_report	report_pass	Read-only for reporting<br>
+To create users:<br>
 
-sql
+sql<br>
 
-SOURCE /path/to/user_management.sql;
-Common Queries
-Inventory Management
-sql
+SOURCE /path/to/user_management.sql;<br>
+Common Queries<br>
+Inventory Management<br>
+sql<br>
 
--- Check low stock items
-SELECT title, stock_quantity FROM book WHERE stock_quantity < 5;
+-- Check low stock items<br>
+SELECT title, stock_quantity FROM book WHERE stock_quantity < 5;<br>
 
--- Add new inventory
-UPDATE book SET stock_quantity = stock_quantity + 10 WHERE book_id = 101;
-Customer Operations
-sql
+-- Add new inventory<br>
+UPDATE book SET stock_quantity = stock_quantity + 10 WHERE book_id = 101;<br>
+Customer Operations<br>
+sql<br>
 
--- Find customer orders
-SELECT o.order_id, o.order_date, COUNT(ol.line_id) AS items
-FROM cust_order o
-JOIN order_line ol ON o.order_id = ol.order_id
-WHERE o.customer_id = 42
-GROUP BY o.order_id;
-Order Processing
-sql
+-- Find customer orders<br>
+SELECT o.order_id, o.order_date, COUNT(ol.line_id) AS items<br>
+FROM cust_order o<br>
+JOIN order_line ol ON o.order_id = ol.order_id<br>
+WHERE o.customer_id = 42<br>
+GROUP BY o.order_id;<br>
+Order Processing<br>
+sql<br>
 
--- Update order status
-INSERT INTO order_history (order_id, status_id)
-VALUES (1001, 3); -- 3 = Shipped
+-- Update order status<br>
+INSERT INTO order_history (order_id, status_id)<br>
+VALUES (1001, 3); -- 3 = Shipped<br>
 
--- Calculate daily sales
-SELECT DATE(order_date) AS day, SUM(price*quantity) AS total
-FROM cust_order o
-JOIN order_line ol ON o.order_id = ol.order_id
-GROUP BY day;
-Best Practices
-Backup Regularly:
+-- Calculate daily sales<br>
+SELECT DATE(order_date) AS day, SUM(price*quantity) AS total<br>
+FROM cust_order o<br>
+JOIN order_line ol ON o.order_id = ol.order_id<br>
+GROUP BY day;<br>
+Best Practices<br>
+Backup Regularly:<br>
 
-cmd/bash
+cmd/bash<br>
 
-mysqldump -u root -p bookstore > bookstore_backup.sql
-Indexing: Consider adding indexes on frequently queried columns:
+mysqldump -u root -p bookstore > bookstore_backup.sql<br>
+Indexing: Consider adding indexes on frequently queried columns:<br>
 
-sql
+sql<br>
 
-CREATE INDEX idx_book_title ON book(title);
-CREATE INDEX idx_customer_email ON customer(email);
-Security:
+CREATE INDEX idx_book_title ON book(title);<br>
+CREATE INDEX idx_customer_email ON customer(email);<br>
+Security:<br>
 
 Rotate passwords quarterly
 
 Limit admin access to essential personnel
 
-Audit user privileges regularly
+Audit user privileges regularly<br>
 
-Troubleshooting
-Issue: Foreign key constraint failures
+Troubleshooting<br>
+Issue: Foreign key constraint failures<br>
 Solution: Ensure referenced data exists before inserting:
 
-sql
+sql<br>
 
--- Check if publisher exists first
-SELECT publisher_id FROM publisher WHERE publisher_name = 'Penguin Books';
-Issue: Performance problems with large datasets
-Solution: Add appropriate indexes and optimize queries with EXPLAIN:
+-- Check if publisher exists first<br>
+SELECT publisher_id FROM publisher WHERE publisher_name = 'Penguin Books';<br>
+Issue: Performance problems with large datasets<br>
+Solution: Add appropriate indexes and optimize queries with EXPLAIN:<br>
 
-sql
+sql<br>
 
 EXPLAIN SELECT * FROM book WHERE title LIKE '%Harry%';
 
-Support
+Support<br>
 For assistance, please contact:
 
 Database Administrator: admin@bookstore.com
